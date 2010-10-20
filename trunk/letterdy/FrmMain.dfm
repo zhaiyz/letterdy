@@ -19,7 +19,7 @@ object frmMainFrame: TfrmMainFrame
     Top = 0
     Width = 649
     Height = 401
-    ActivePage = tsHome
+    ActivePage = tsPrint
     TabOrder = 0
     object tsHome: TTabSheet
       Caption = #39318#39029
@@ -27,8 +27,6 @@ object frmMainFrame: TfrmMainFrame
     object tsTransfer: TTabSheet
       Caption = #25968#25454#36716#31227
       ImageIndex = 1
-      ExplicitLeft = 8
-      ExplicitTop = 28
       object lblExcel: TLabel
         Left = 24
         Top = 24
@@ -118,6 +116,62 @@ object frmMainFrame: TfrmMainFrame
     object tsPrint: TTabSheet
       Caption = #25968#25454#25171#21360
       ImageIndex = 2
+      ExplicitLeft = 8
+      ExplicitTop = 28
+      object lblFirst: TLabel
+        Left = 120
+        Top = 64
+        Width = 52
+        Height = 13
+        Caption = #31532#19968#25104#32489':'
+      end
+      object lblSecond: TLabel
+        Left = 312
+        Top = 64
+        Width = 52
+        Height = 13
+        Caption = #31532#20108#25104#32489':'
+      end
+      object lblDatabase: TLabel
+        Left = 132
+        Top = 32
+        Width = 40
+        Height = 13
+        Caption = #25968#25454#24211':'
+      end
+      object cbbFirst: TComboBox
+        Left = 178
+        Top = 61
+        Width = 119
+        Height = 21
+        ItemHeight = 13
+        TabOrder = 0
+      end
+      object cbbSecond: TComboBox
+        Left = 370
+        Top = 61
+        Width = 119
+        Height = 21
+        ItemHeight = 13
+        TabOrder = 1
+      end
+      object edtDatabase: TEdit
+        Left = 178
+        Top = 29
+        Width = 247
+        Height = 21
+        ReadOnly = True
+        TabOrder = 2
+      end
+      object btnDatabase: TButton
+        Left = 431
+        Top = 27
+        Width = 58
+        Height = 25
+        Caption = #27983#35272
+        TabOrder = 3
+        OnClick = btnDatabaseClick
+      end
     end
   end
   object dlgExcel: TOpenDialog
@@ -131,6 +185,11 @@ object frmMainFrame: TfrmMainFrame
     Top = 368
   end
   object adocMain: TADOConnection
+    Left = 104
+    Top = 368
+  end
+  object dlgDatabase: TOpenDialog
+    Filter = #25968#25454#24211#65288'Access'#65289'|*.mdb'
     Left = 72
     Top = 368
   end
