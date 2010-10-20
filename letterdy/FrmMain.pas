@@ -26,9 +26,18 @@ type
     dlgExcel: TOpenDialog;
     dlgAccess: TOpenDialog;
     adocMain: TADOConnection;
+    lblFirst: TLabel;
+    cbbFirst: TComboBox;
+    lblSecond: TLabel;
+    cbbSecond: TComboBox;
+    lblDatabase: TLabel;
+    edtDatabase: TEdit;
+    btnDatabase: TButton;
+    dlgDatabase: TOpenDialog;
     procedure btnExcelClick(Sender: TObject);
     procedure btnAccessClick(Sender: TObject);
     procedure btnTransferClick(Sender: TObject);
+    procedure btnDatabaseClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -50,11 +59,27 @@ begin
   end;
 end;
 
+procedure TfrmMainFrame.btnDatabaseClick(Sender: TObject);
+begin
+  // 选择数据库，并显示出数据库里面的表
+  if dlgDatabase.Execute then
+  begin
+    edtDatabase.Text := dlgDatabase.FileName;
+    adocMain.Connected := false;
+    adocMain.ConnectionString :=
+      'Provider=Microsoft.Jet.OLEDB.4.0;Data Source='+edtDatabase.Text+';'
+      +'Persist Security Info=False';
+    adocMain.GetTableNames(cbbFirst.Items, false);
+    adocMain.GetTableNames(cbbSecond.Items, false);
+    adocMain.Connected := false;
+  end;
+end;
+
 procedure TfrmMainFrame.btnExcelClick(Sender: TObject);
 begin
   if dlgExcel.Execute then
   begin
-    edtExcel.Text := dlgExcel.FileName
+    edtExcel.Text := dlgExcel.FileName;
   end;
 end;
 
@@ -74,9 +99,11 @@ begin
       adocMain.Execute(SQLStr);
     except
       // 出现异常，数据转移失败
+      adocMain.Connected := false;
       ShowMessage('数据转换失败，请检查输入数据!');
       exit;
     end;
+      adocMain.Connected := false;
       ShowMessage('数据转换成功，请继续其他操作!');
   end
 else
