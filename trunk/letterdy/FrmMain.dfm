@@ -116,8 +116,6 @@ object frmMainFrame: TfrmMainFrame
     object tsPrint: TTabSheet
       Caption = #25968#25454#25171#21360
       ImageIndex = 2
-      ExplicitLeft = 8
-      ExplicitTop = 28
       object lblFirst: TLabel
         Left = 120
         Top = 64
@@ -172,6 +170,15 @@ object frmMainFrame: TfrmMainFrame
         TabOrder = 3
         OnClick = btnDatabaseClick
       end
+      object btnPrint: TButton
+        Left = 431
+        Top = 88
+        Width = 58
+        Height = 25
+        Caption = #25171#21360
+        TabOrder = 4
+        OnClick = btnPrintClick
+      end
     end
   end
   object dlgExcel: TOpenDialog
@@ -184,13 +191,88 @@ object frmMainFrame: TfrmMainFrame
     Left = 40
     Top = 368
   end
-  object adocMain: TADOConnection
-    Left = 104
-    Top = 368
-  end
   object dlgDatabase: TOpenDialog
     Filter = #25968#25454#24211#65288'Access'#65289'|*.mdb'
     Left = 72
+    Top = 368
+  end
+  object rvdcTable01: TRvDataSetConnection
+    FieldAliasList.Strings = (
+      #29677'=BAN'
+      #32771#21495'=KAOHAO'
+      #22995#21517'=XINGMING'
+      #24635#20998'=ZONGFEN'
+      #26657#21517'=XIAOMING'
+      #29677#21517'=BANMING'
+      #35821#25991'=YUWEN'
+      #25968#23398'=SHUXUE'
+      #33521#35821'=YINGYU'
+      #29289#29702'=WULI'
+      #21270#23398'=HUAXUE'
+      #29983#29289'=SHENGWU'
+      #25919#27835'=ZHENGZHI'
+      #21382#21490'=LISHI'
+      #22320#29702'=DILI')
+    RuntimeVisibility = rtDeveloper
+    DataSet = qryTable01
+    Left = 200
+    Top = 368
+  end
+  object rvpMain: TRvProject
+    LoadDesigner = True
+    ProjectFile = 'E:\delphi\letterdy\report.rav'
+    Left = 264
+    Top = 368
+  end
+  object qryTable01: TADOQuery
+    Connection = adocMain
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from test02')
+    Left = 136
+    Top = 368
+  end
+  object qryTable02: TADOQuery
+    Connection = adocMain
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      '')
+    Left = 168
+    Top = 368
+  end
+  object adocMain: TADOConnection
+    Connected = True
+    ConnectionString = 
+      'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=E:\delphi\letterdy\' +
+      'data.mdb;Persist Security Info=False'
+    LoginPrompt = False
+    Mode = cmShareDenyNone
+    Provider = 'Microsoft.Jet.OLEDB.4.0'
+    Left = 104
+    Top = 368
+  end
+  object rvdcTable02: TRvDataSetConnection
+    FieldAliasList.Strings = (
+      #29677'=BAN'
+      #32771#21495'=KAOHAO'
+      #22995#21517'=XINGMING'
+      #24635#20998'=ZONGFEN'
+      #26657#21517'=XIAOMING'
+      #29677#21517'=BANMING'
+      #35821#25991'=YUWEN'
+      #25968#23398'=SHUXUE'
+      #33521#35821'=YINGYU'
+      #29289#29702'=WULI'
+      #21270#23398'=HUAXUE'
+      #29983#29289'=SHENGWU'
+      #25919#27835'=ZHENGZHI'
+      #21382#21490'=LISHI'
+      #22320#29702'=DILI')
+    RuntimeVisibility = rtDeveloper
+    DataSet = qryTable02
+    Left = 232
     Top = 368
   end
 end
