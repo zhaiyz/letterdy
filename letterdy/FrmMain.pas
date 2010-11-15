@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ComCtrls, StdCtrls, DB, ADODB;
+  Dialogs, ComCtrls, StdCtrls, DB, ADODB, RpDefine, RpCon, RpConDS, Grids,
+  DBGrids, RpRave;
 
 type
   TfrmMainFrame = class(TForm)
@@ -25,7 +26,6 @@ type
     btnTransfer: TButton;
     dlgExcel: TOpenDialog;
     dlgAccess: TOpenDialog;
-    adocMain: TADOConnection;
     lblFirst: TLabel;
     cbbFirst: TComboBox;
     lblSecond: TLabel;
@@ -34,10 +34,18 @@ type
     edtDatabase: TEdit;
     btnDatabase: TButton;
     dlgDatabase: TOpenDialog;
+    rvdcTable01: TRvDataSetConnection;
+    rvpMain: TRvProject;
+    qryTable01: TADOQuery;
+    qryTable02: TADOQuery;
+    btnPrint: TButton;
+    adocMain: TADOConnection;
+    rvdcTable02: TRvDataSetConnection;
     procedure btnExcelClick(Sender: TObject);
     procedure btnAccessClick(Sender: TObject);
     procedure btnTransferClick(Sender: TObject);
     procedure btnDatabaseClick(Sender: TObject);
+    procedure btnPrintClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -81,6 +89,22 @@ begin
   begin
     edtExcel.Text := dlgExcel.FileName;
   end;
+end;
+
+procedure TfrmMainFrame.btnPrintClick(Sender: TObject);
+begin
+  adocMain.Connected := false;
+  adocMain.ConnectionString :=
+      'Provider=Microsoft.Jet.OLEDB.4.0;Data Source='+edtDatabase.Text+';'
+      +'Persist Security Info=False';
+  qryTable01.SQL.Clear;
+  qryTable01.SQL.Add('SELECT * FROM ' + cbbFirst.Text);
+  qryTable01.ExecSQL;
+  qryTable02.SQL.Clear;
+  qryTable02.SQL.Add('SELECT * FROM ' + cbbSecond.Text);
+  qryTable02.ExecSQL;
+  rvpMain.Execute;
+  adocMain.Connected := false;
 end;
 
 procedure TfrmMainFrame.btnTransferClick(Sender: TObject);
