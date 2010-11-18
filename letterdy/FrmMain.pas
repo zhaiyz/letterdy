@@ -37,10 +37,8 @@ type
     rvdcTable01: TRvDataSetConnection;
     rvpMain: TRvProject;
     qryTable01: TADOQuery;
-    qryTable02: TADOQuery;
     btnPrint: TButton;
     adocMain: TADOConnection;
-    rvdcTable02: TRvDataSetConnection;
     procedure btnExcelClick(Sender: TObject);
     procedure btnAccessClick(Sender: TObject);
     procedure btnTransferClick(Sender: TObject);
