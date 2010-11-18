@@ -198,48 +198,55 @@ object frmMainFrame: TfrmMainFrame
   end
   object rvdcTable01: TRvDataSetConnection
     FieldAliasList.Strings = (
-      #29677'=BAN'
-      #32771#21495'=KAOHAO'
-      #22995#21517'=XINGMING'
-      #24635#20998'=ZONGFEN'
-      #26657#21517'=XIAOMING'
-      #29677#21517'=BANMING'
-      #35821#25991'=YUWEN'
-      #25968#23398'=SHUXUE'
-      #33521#35821'=YINGYU'
-      #29289#29702'=WULI'
-      #21270#23398'=HUAXUE'
-      #29983#29289'=SHENGWU'
-      #25919#27835'=ZHENGZHI'
-      #21382#21490'=LISHI'
-      #22320#29702'=DILI')
+      'test02.'#29677'=BAN1'
+      'test02.'#32771#21495'=KAOHAO1'
+      'test02.'#22995#21517'=XINGMING1'
+      'test02.'#24635#20998'=ZONGFEN1'
+      'test02.'#26657#21517'=XIAOMING1'
+      'test02.'#29677#21517'=BANMING1'
+      'test02.'#35821#25991'=YUWEN1'
+      'test02.'#25968#23398'=SHUXUE1'
+      'test02.'#33521#35821'=YINGYU1'
+      'test02.'#29289#29702'=WULI1'
+      'test02.'#21270#23398'=HUAXUE1'
+      'test02.'#29983#29289'=SHENGWU1'
+      'test02.'#25919#27835'=ZHENGZHI1'
+      'test02.'#21382#21490'=LISHI1'
+      'test02.'#22320#29702'=DILI1'
+      'test03.'#29677'=BAN2'
+      'test03.'#32771#21495'=KAOHAO2'
+      'test03.'#22995#21517'=XINGMING2'
+      'test03.'#24635#20998'=ZONGFEN2'
+      'test03.'#26657#21517'=XIAOMING2'
+      'test03.'#29677#21517'=BANMING2'
+      'test03.'#35821#25991'=YUWEN2'
+      'test03.'#25968#23398'=SHUXUE2'
+      'test03.'#33521#35821'=YINGYU2'
+      'test03.'#29289#29702'=WULI2'
+      'test03.'#21270#23398'=HUAXUE2'
+      'test03.'#29983#29289'=SHENGWU2'
+      'test03.'#25919#27835'=ZHENGZHI2'
+      'test03.'#21382#21490'=LISHI2'
+      'test03.'#22320#29702'=DILI2')
     RuntimeVisibility = rtDeveloper
     DataSet = qryTable01
-    Left = 200
+    Left = 168
     Top = 368
   end
   object rvpMain: TRvProject
     LoadDesigner = True
     ProjectFile = 'E:\delphi\letterdy\report.rav'
-    Left = 264
+    Left = 200
     Top = 368
   end
   object qryTable01: TADOQuery
+    Active = True
     Connection = adocMain
     CursorType = ctStatic
     Parameters = <>
     SQL.Strings = (
-      'select * from test02')
+      'select * from test02, test03 where test02.'#32771#21495'=test03.'#32771#21495)
     Left = 136
-    Top = 368
-  end
-  object qryTable02: TADOQuery
-    Connection = adocMain
-    CursorType = ctStatic
-    Parameters = <>
-    SQL.Strings = (
-      '')
-    Left = 168
     Top = 368
   end
   object adocMain: TADOConnection
@@ -251,28 +258,6 @@ object frmMainFrame: TfrmMainFrame
     Mode = cmShareDenyNone
     Provider = 'Microsoft.Jet.OLEDB.4.0'
     Left = 104
-    Top = 368
-  end
-  object rvdcTable02: TRvDataSetConnection
-    FieldAliasList.Strings = (
-      #29677'=BAN'
-      #32771#21495'=KAOHAO'
-      #22995#21517'=XINGMING'
-      #24635#20998'=ZONGFEN'
-      #26657#21517'=XIAOMING'
-      #29677#21517'=BANMING'
-      #35821#25991'=YUWEN'
-      #25968#23398'=SHUXUE'
-      #33521#35821'=YINGYU'
-      #29289#29702'=WULI'
-      #21270#23398'=HUAXUE'
-      #29983#29289'=SHENGWU'
-      #25919#27835'=ZHENGZHI'
-      #21382#21490'=LISHI'
-      #22320#29702'=DILI')
-    RuntimeVisibility = rtDeveloper
-    DataSet = qryTable02
-    Left = 232
     Top = 368
   end
 end
