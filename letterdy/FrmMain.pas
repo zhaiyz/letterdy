@@ -96,11 +96,9 @@ begin
       'Provider=Microsoft.Jet.OLEDB.4.0;Data Source='+edtDatabase.Text+';'
       +'Persist Security Info=False';
   qryTable01.SQL.Clear;
-  qryTable01.SQL.Add('SELECT * FROM ' + cbbFirst.Text);
+  qryTable01.SQL.Add('SELECT * FROM ' + cbbFirst.Text + ' AS test02, ' + cbbSecond.Text + ' AS test03');
+  qryTable01.SQL.Add(' WHERE test02.¿¼ºÅ=test03.¿¼ºÅ');
   qryTable01.ExecSQL;
-  qryTable02.SQL.Clear;
-  qryTable02.SQL.Add('SELECT * FROM ' + cbbSecond.Text);
-  qryTable02.ExecSQL;
   rvpMain.Execute;
   adocMain.Connected := false;
 end;
