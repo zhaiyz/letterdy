@@ -34,6 +34,10 @@ object frmMainFrame: TfrmMainFrame
     object tsTransfer: TTabSheet
       Caption = #25968#25454#36716#31227
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object lblExcel: TLabel
         Left = 24
         Top = 24
@@ -123,6 +127,10 @@ object frmMainFrame: TfrmMainFrame
     object tsPrint: TTabSheet
       Caption = #25968#25454#25171#21360
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object lblFirst: TLabel
         Left = 120
         Top = 64
@@ -149,7 +157,7 @@ object frmMainFrame: TfrmMainFrame
         Top = 61
         Width = 119
         Height = 21
-        ItemHeight = 13
+        ItemHeight = 0
         TabOrder = 0
       end
       object cbbSecond: TComboBox
@@ -157,7 +165,7 @@ object frmMainFrame: TfrmMainFrame
         Top = 61
         Width = 119
         Height = 21
-        ItemHeight = 13
+        ItemHeight = 0
         TabOrder = 1
       end
       object edtDatabase: TEdit
