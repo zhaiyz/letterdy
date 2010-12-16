@@ -5,7 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ComCtrls, StdCtrls, DB, ADODB, RpDefine, RpCon, RpConDS, Grids,
-  DBGrids, RpRave, RpBase, RpSystem, ExtCtrls, JPEG;
+  DBGrids, RpRave, RpBase, RpSystem, ExtCtrls, JPEG, RvCsRpt,RVProj,RVClass,
+  RVCsStd;
 
 type
   TfrmMainFrame = class(TForm)
@@ -40,6 +41,12 @@ type
     btnPrint: TButton;
     adocMain: TADOConnection;
     Image1: TImage;
+    lblTerm: TLabel;
+    edtTerm: TEdit;
+    lblDate: TLabel;
+    edtDate: TEdit;
+    memContent: TMemo;
+    lblContent: TLabel;
     procedure btnExcelClick(Sender: TObject);
     procedure btnAccessClick(Sender: TObject);
     procedure btnTransferClick(Sender: TObject);
@@ -92,9 +99,22 @@ begin
 end;
 
 procedure TfrmMainFrame.btnPrintClick(Sender: TObject);
+var
+  MyPage: TRavePage;
+  MyText1: TRaveText;
+  MyText2: TRaveText;
+  MyMemo: TRaveMemo;
 begin
-  if ((edtDatabase.Text <> '') and (cbbFirst.Text <> '') and (cbbSecond.Text <> '')) then
+  if ((Trim(edtDatabase.Text) <> '') and (Trim(cbbFirst.Text) <> '') and (Trim(cbbSecond.Text) <> '') and (Trim(edtTerm.Text) <> '') and (Trim(edtDate.Text) <> '') and (Trim(memContent.Text) <> '')) then
   begin
+    rvpMain.Open;
+    MyPage := rvpMain.ProjMan.FindRaveComponent('report.page', nil) as TRavePage;
+    MyText1 := rvpMain.ProjMan.FindRaveComponent('Text17', MyPage) as TRaveText;
+    MyText2 := rvpMain.ProjMan.FindRaveComponent('Text15', MyPage) as TRaveText;
+    MyMemo :=  rvpMain.ProjMan.FindRaveComponent('Memo11', MyPage) as TRaveMemo;
+    MyText1.Text := Trim(edtTerm.Text);
+    MyText2.Text := Trim(edtDate.Text);
+    MyMemo.Text := Trim(memContent.Text);
     try
       adocMain.Connected := false;
       adocMain.ConnectionString :=
@@ -123,7 +143,7 @@ procedure TfrmMainFrame.btnTransferClick(Sender: TObject);
 var
   SQLStr:string;
 begin
-  if ((edtExcel.Text <> '')and(edtSheet.Text <> '')and(edtAccess.Text <> '')and(edtTable.Text <> '')) then
+  if ((Trim(edtExcel.Text) <> '')and(Trim(edtSheet.Text) <> '')and(Trim(edtAccess.Text) <> '')and(Trim(edtTable.Text) <> '')) then
   begin
     try
       adocMain.Connected := false;
@@ -151,6 +171,7 @@ end;
 procedure TfrmMainFrame.FormCreate(Sender: TObject);
 begin
     Image1.Picture.LoadFromFile('home.jpg');
+    memContent.Text := '你深知拼搏才会成功，坚持才会胜利，充分利用好这个寒假的每一分钟，莫要待开学的时候才后悔时光飞逝。你是聪明的，还需要更加刻苦，别停留，向前冲吧，我看好你。你要坚持到底，用你的智慧和耐心挑战自我，超载自我，创造属于你的极限！';
 end;
 
 end.
