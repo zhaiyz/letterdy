@@ -54,6 +54,15 @@ type
     lblTeacher: TLabel;
     edtTeacher: TEdit;
     lblNumber: TLabel;
+    Label1: TLabel;
+    edtStuEva: TEdit;
+    Label2: TLabel;
+    edtAct: TEdit;
+    Edit1: TEdit;
+    Label3: TLabel;
+    Label4: TLabel;
+    lblWord: TLabel;
+    memWord: TMemo;
     procedure btnExcelClick(Sender: TObject);
     procedure btnAccessClick(Sender: TObject);
     procedure btnTransferClick(Sender: TObject);
@@ -61,6 +70,7 @@ type
     procedure btnPrintClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure memContentChange(Sender: TObject);
+    procedure memWordChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -115,8 +125,16 @@ var
   MyText4: TRaveText;
   MyText5: TRaveText;
   MyMemo: TRaveMemo;
+  MyMemo1: TRaveMemo;
+  MyMemo2: TRaveMemo;
+  MyMemo3: TRaveMemo;
+  MyMemo4: TRaveMemo;
 begin
-  if ((Trim(edtDatabase.Text) <> '') and (Trim(cbbFirst.Text) <> '') and (Trim(cbbSecond.Text) <> '') and (Trim(edtTerm.Text) <> '') and (Trim(edtDate.Text) <> '') and (Trim(memContent.Text) <> '') and (Trim(edtTeacher.Text) <> '') and (Trim(edtFirst.Text) <> '') and (Trim(edtSecond.Text) <> '')) then
+  if ((Trim(edtDatabase.Text) <> '') and (Trim(cbbFirst.Text) <> '') and (Trim(cbbSecond.Text) <> '')
+      and (Trim(edtTerm.Text) <> '') and (Trim(edtDate.Text) <> '') and (Trim(memContent.Text) <> '')
+      and (Trim(edtTeacher.Text) <> '') and (Trim(edtFirst.Text) <> '') and (Trim(edtSecond.Text) <> '')
+      and (Trim(edtStuEva.Text) <> '') and (Trim(edtAct.Text) <> '') and (Trim(Edit1.Text) <> '')
+      and (Trim(memWord.Text) <> '')) then
   begin
     rvpMain.Open;
     MyPage := rvpMain.ProjMan.FindRaveComponent('report.page', nil) as TRavePage;
@@ -126,12 +144,20 @@ begin
     MyText4 := rvpMain.ProjMan.FindRaveComponent('Text20', MyPage) as TRaveText;
     MyText5 := rvpMain.ProjMan.FindRaveComponent('Text22', MyPage) as TRaveText;
     MyMemo :=  rvpMain.ProjMan.FindRaveComponent('Memo11', MyPage) as TRaveMemo;
+    MyMemo1 := rvpMain.ProjMan.FindRaveComponent('Memo8', MyPage) as TRaveMemo;
+    MyMemo2 := rvpMain.ProjMan.FindRaveComponent('Memo9', MyPage) as TRaveMemo;
+    MyMemo3 := rvpMain.ProjMan.FindRaveComponent('Memo10', MyPage) as TRaveMemo;
+    MyMemo4 := rvpMain.ProjMan.FindRaveComponent('Memo5', MyPage) as TRaveMemo;
     MyText1.Text := Trim(edtTerm.Text);
     MyText2.Text := Trim(edtDate.Text);
     MyText3.Text := Trim(edtTeacher.Text);
     MyText4.Text := Trim(edtFirst.Text);
     MyText5.Text := Trim(edtSecond.Text);
     MyMemo.Text := Trim(memContent.Text);
+    MyMemo1.Text := Trim(edtStuEva.Text);
+    MyMemo2.Text := Trim(edtAct.Text);
+    MyMemo3.Text := Trim(Edit1.Text);
+    MyMemo4.Text := '    ' + Trim(memWord.Text);
     try
       adocMain.Connected := false;
       adocMain.ConnectionString :=
@@ -188,6 +214,7 @@ end;
 procedure TfrmMainFrame.FormCreate(Sender: TObject);
 begin
     Image1.Picture.LoadFromFile('home.jpg');
+    memWord.Text := '现将学生的学习成绩及评语寄去敬请一阅，同时请把您的宝贵意见和建议填入下表，以便我们改进工作，把学校办得更好。';
     memContent.Text := '你深知拼搏才会成功，坚持才会胜利，充分利用好这个寒假的每一分钟，莫要待开学的时候才后悔时光飞逝。你是聪明的，还需要更加刻苦，别停留，向前冲吧，我看好你。你要坚持到底，用你的智慧和耐心挑战自我，超载自我，创造属于你的极限！';
 end;
 
@@ -197,6 +224,14 @@ var
 begin
   num := Length(memContent.Text) div 2;
   lblNumber.Caption := IntToStr(num) + '/120';
+end;
+
+procedure TfrmMainFrame.memWordChange(Sender: TObject);
+var
+  num: Integer;
+begin
+  num := Length(memWord.Text) div 2;
+  lblWord.Caption := IntToStr(num) + '/80';
 end;
 
 end.
